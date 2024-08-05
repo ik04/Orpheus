@@ -135,7 +135,9 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
 renderer.setSize(sizes.width, sizes.height);
-
+window.addEventListener("load", () => {
+  alert("Click the screen to start the music!");
+});
 let musicStart = false;
 let lastPos = 0;
 document.addEventListener("click", function () {
