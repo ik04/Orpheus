@@ -65,10 +65,11 @@ particlesGeometry.setAttribute(
   new THREE.BufferAttribute(positions, 3)
 );
 const particleMaterial = new THREE.PointsMaterial({
-  map: starTexture,
+  alphaMap: starTexture,
   color: 0xffeded,
   sizeAttenuation: true,
   size: 0.006,
+  transparent: true,
 });
 const particles = new THREE.Points(particlesGeometry, particleMaterial);
 particles.visible = false;
