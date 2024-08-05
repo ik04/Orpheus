@@ -119,11 +119,12 @@ window.addEventListener("resize", () => {
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height);
-camera.position.z = 3;
+const isMobile = sizes.width <= 768;
+camera.position.z = isMobile ? 5 : 3;
 scene.add(camera);
 
-// const controls = new OrbitControls(camera, canvas);
-// controls.enableDamping = true;
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
 /**
  * Renderer
  */
@@ -131,10 +132,6 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
 renderer.setSize(sizes.width, sizes.height);
-
-window.addEventListener("load", () => {
-  alert("Click the screen to start the music!");
-});
 
 let musicStart = false;
 let lastPos = 0;
@@ -153,7 +150,7 @@ document.addEventListener("click", function () {
 const clock = new THREE.Clock();
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
-  // controls.update();
+  controls.update();
   lastPos = elapsedTime;
   if (musicStart) {
     particles.visible = true;
