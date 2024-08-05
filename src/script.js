@@ -71,6 +71,8 @@ const particleMaterial = new THREE.PointsMaterial({
   size: 0.006,
   transparent: true,
 });
+particleMaterial.depthWrite = false;
+particleMaterial.blending = THREE.AdditiveBlending;
 const particles = new THREE.Points(particlesGeometry, particleMaterial);
 particles.visible = false;
 scene.add(particles);
