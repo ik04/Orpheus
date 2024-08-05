@@ -61,6 +61,7 @@ const baseMaterial = new THREE.MeshStandardMaterial({
   roughness: 0.4,
 });
 const base = new THREE.Mesh(baseGeometry, baseMaterial);
+base.material.side = THREE.DoubleSide;
 CD.add(base);
 const bandGeometry = new THREE.RingGeometry(0.2, 0.4, 30);
 const bandMaterial = new THREE.MeshStandardMaterial({
