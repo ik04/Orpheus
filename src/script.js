@@ -7,7 +7,6 @@ const canvas = document.querySelector("canvas.webgl");
 // Scene
 const scene = new THREE.Scene();
 const gui = new dat.GUI();
-
 /**
  * Object
  */
@@ -159,9 +158,9 @@ const tick = () => {
         pointLight.intensity += 0.001;
         console.log(pointLight.intensity != 3);
       }
-    }, 3000);
+    }, 4000);
     CD.rotation.z = lastPos * 0.8;
-    // CD.position.y = Math.sin(elapsedTime) * 0.2;
+    CD.position.y = Math.sin(elapsedTime) * 0.2;
     particles.rotation.z = elapsedTime * 0.2;
   }
   renderer.render(scene, camera);
