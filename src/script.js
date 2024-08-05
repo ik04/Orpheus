@@ -1,12 +1,36 @@
 import * as THREE from "three";
 import * as dat from "lil-gui";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-// Canvas
-const canvas = document.querySelector("canvas.webgl");
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
-// Scene
+const canvas = document.querySelector("canvas.webgl");
+const gltfLoader = new GLTFLoader();
+let diskModel;
+
+// gltfLoader.load(
+//   "/models/Disk.glb",
+//   (gltf) => {
+//     diskModel = gltf.scene;
+//     diskModel.scale.set(1, 1, 1); // Adjust scale if needed
+//     diskModel.rotation.x = -0.5;
+//     diskModel.rotation.y = 0.5;
+//     scene.add(diskModel);
+//     console.log("Model loaded successfully");
+//   },
+//   (progress) => {
+//     console.log(
+//       "Loading progress:",
+//       (progress.loaded / progress.total) * 100 + "%"
+//     );
+//   },
+//   (error) => {
+//     console.error("Error loading model:", error);
+//   }
+// );
+
 const scene = new THREE.Scene();
 const gui = new dat.GUI();
+
 /**
  * Object
  */
@@ -21,7 +45,7 @@ const textureLoader = new THREE.TextureLoader();
 // const metalRoughness = textureLoader.load(`${metalPath}roughness.jpg`);
 // const matcap = textureLoader.load(`${metalPath}/texture.png`);
 const art = textureLoader.load(`${metalPath}/art.jpg`);
-const starTexture = textureLoader.load(`${particlePath}/4.png`);
+const starTexture = textureLoader.load(`${particlePath}/8.png`);
 
 const axes = new THREE.AxesHelper();
 // scene.add(axes);
@@ -68,7 +92,7 @@ const particleMaterial = new THREE.PointsMaterial({
   alphaMap: starTexture,
   color: 0xffeded,
   sizeAttenuation: true,
-  size: 0.006,
+  size: 0.02,
   transparent: true,
 });
 particleMaterial.depthWrite = false;
@@ -162,7 +186,6 @@ const tick = () => {
     setTimeout(() => {
       if (pointLight.intensity < 4) {
         pointLight.intensity += 0.001;
-        console.log(pointLight.intensity != 3);
       }
     }, 4000);
     CD.rotation.z = lastPos * 0.8;
