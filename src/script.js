@@ -161,11 +161,11 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 window.addEventListener("load", () => {
-  alert("Click the screen to start the music!");
+  alert("Double click the screen to start the music!");
 });
 let musicStart = false;
 let lastPos = 0;
-document.addEventListener("click", function () {
+document.addEventListener("dblclick", function () {
   var music = document.getElementById("backgroundMusic");
   if (musicStart) {
     musicStart = false;
